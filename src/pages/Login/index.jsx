@@ -36,7 +36,6 @@ const Login = () => {
                         className="flex items-center justify-center w-10 h-10 mr-2 bg-gray-200 rounded-full"
                         onClick={handleLogin}
                         type='button'
-                        
                         >
                             <FaGooglePlusG/>
                         </button>
