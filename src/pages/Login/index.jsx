@@ -23,6 +23,8 @@ const Login = () => {
                         </div>
                         <button type="submit" className="btn btn-primary">Login</button>
                         <Link to="/register" className="btn btn-link">Register</Link>
+                        
+                        <Link to = "/home" className='btn btn-link'>Home</Link>
                     </form>
                 </div>
             </div>
