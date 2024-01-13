@@ -12,6 +12,7 @@
   "dependencies": {
     "@ark-ui/react": "^1.2.1",
     "@park-ui/tailwind-plugin": "^0.16.0",
+    "firebase": "^10.7.1",
     "formik": "^2.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
