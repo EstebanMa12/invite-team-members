@@ -99,7 +99,7 @@ const Login = () => {
                             justify-center
                             gap-4'
                             type='button'
-                            onClick={()=>handleLogin}
+                            onClick={()=>handleLogin()}
                         >
                             Ingresar con google
                             <FaGooglePlusG />
