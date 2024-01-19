@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
-import userReducer from './users/userSlice';
+import userSlice from './users/userSlice';
 
 const store = configureStore({
     reducer: {
-    user: userReducer,
+    user: userSlice.reducer,
     },
     middleware: [thunk],
 });
