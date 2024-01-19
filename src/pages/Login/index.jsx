@@ -10,37 +10,37 @@ import { useEffect } from 'react'
 const Login = () => {
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const { isAuthenticate, user, error } = useSelector(( store ) => store.user)
-  const { register, handleSubmit } = useForm()
+  // const navigate = useNavigate()
+  // const { isAuthenticate, user, error } = useSelector(( store ) => store.user)
+  // const { register, handleSubmit } = useForm()
 
   const handleLogin = ()=>{
     dispatch(loginGoogle())
   }
   
 
-  const handleLoginWithEmailAndPassword = (data) => {
-    console.table(data);
-    dispatch(loginWithEmailAndPassword(data))
-  }
+  // const handleLoginWithEmailAndPassword = (data) => {
+  //   console.table(data);
+  //   dispatch(loginWithEmailAndPassword(data))
+  // }
 
-  useEffect(() => {
-    if (error) {
-      Swal.fire({
-        title: "Oops!",
-        text: "Ha ocurrido un error, por favor verifique sus credenciales",
-        icon: "Error"
-      })
-    }
+  // useEffect(() => {
+  //   if (error) {
+  //     Swal.fire({
+  //       title: "Oops!",
+  //       text: "Ha ocurrido un error, por favor verifique sus credenciales",
+  //       icon: "Error"
+  //     })
+  //   }
   
-    if ( error === false ) {
-      Swal.fire({
-        title: `Bienvenido ${user.name}!`,
-        text: "Has iniciado sesión exitosamente",
-        icon: "success"
-      }).then(navigate('/home'))
-    }
-  }, [error])
+  //   if ( error === false ) {
+  //     Swal.fire({
+  //       title: `Bienvenido ${user.name}!`,
+  //       text: "Has iniciado sesión exitosamente",
+  //       icon: "success"
+  //     }).then(navigate('/home'))
+  //   }
+  // }, [error])
 
 
 
