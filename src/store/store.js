@@ -4,9 +4,9 @@ import userReducer from './users/userSlice';
 
 const store = configureStore({
     reducer: {
-    user: userReducer,
+        user: userReducer
     },
-    middleware: [thunk],
+    middleware: [ thunk],
 });
 
 export default store;
