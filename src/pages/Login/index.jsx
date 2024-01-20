@@ -44,8 +44,9 @@ const Login = () => {
 
 
 
-  return (<>
-    {
+  return (
+  <>
+    
     <section className="bg-gray-50 dark:bg-gray-900">
     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -132,52 +133,8 @@ const Login = () => {
         </div>
     </div>
   </section>
-    /* <section classNameName='bg-gray-50 dark:bg-gray-900'>
-    <h1 classNameName='text-3xl font-bold underline my-3'>Iniciar sesión</h1>
-    <form
-      classNameName='grid justify-start' 
-    >
-      <input 
-          classNameName='border border-indigo-300 rounded-md my-3 h-10 text-indigo-700 px-5' 
-          type='email' 
-          placeholder='Ingrese su correo electrónico'
-          name='email'
-        />
-        <input 
-          classNameName='border border-indigo-300 rounded-md my-3 h-10 text-indigo-700 px-5' 
-          type='password' 
-          placeholder='Ingrese su contraseña' 
-          name='password'
-        />
-        <div classNameName='flex gap-4'>
-          <button classNameName='bg-violet-400 text-white h-10 rounded-md my-5 px-5' type='submit'>Iniciar sesión</button>
-          <button
-            classNameName='bg-green-400 text-white h-10 rounded-md my-5 p-5 flex place-items-center flex gap-2'
-            type='button'
-          >
-            Ingresar con google
-            <FaGooglePlusG />
-          </button>
-          <button
-            classNameName='bg-green-400 text-white h-10 rounded-md my-5 p-5 flex place-items-center flex gap-2'
-            type='button'
-          >
-            Ingresar con celular
-            <FaPhone />
-          </button>
-        </div>
-        <p>
-        Si no tiene una cuenta registrada, registrese
-        <Link 
-          classNameName='text-indigo-900 underline px-1' 
-          to='/register'
-        >
-          aquí
-        </Link>
-      </p>
-    </form>
-  </section> */}
-  </>)
+  </>
+  )
 }
 
 export default Login
