@@ -9,3 +9,5 @@ export const store = configureStore({
   middleware: ()=>[thunk],
 });
 
+
+// middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),

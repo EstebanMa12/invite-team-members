@@ -10,6 +10,8 @@ import { useSelector } from "react-redux";
 import { useState , useEffect} from "react";
 import {onAuthStateChanged} from 'firebase/auth'
 import { setIsAuthenticate, setUser } from "../redux/user/userSlice";
+import { useDispatch } from "react-redux";
+import { auth } from "../firebase/firebaseConfig";
 
 function AppRouter(){
     const { isAunthenticate, user }= useSelector(store => store.user)
