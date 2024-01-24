@@ -2,7 +2,7 @@
 import { FaGooglePlusG, FaPhone  } from 'react-icons/fa6'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-// import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { loginGoogle, loginWithEmailAndPassword } from './../../redux/user/userThunks.js';
 import Swal from 'sweetalert2';
 import { useEffect } from 'react';
@@ -167,6 +167,7 @@ const Login = () => {
                             justify-center
                             gap-4"
                     type="button"
+                    onClick={()=> navigate('loginWithPhone')}
                   >
                     Ingresar con celular
                     <FaPhone />

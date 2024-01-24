@@ -13,7 +13,7 @@ function AppRouter(){
             <Routes>
                 <Route path="/" element={<Home/>} />
                 <Route path="Login" element={<Login/>} />
-                <Route path="loginWithPhone" element={<LoginWithPhone/>} />
+                <Route path="/login/loginWithPhone" element={<LoginWithPhone/>} />
                 <Route path="Register" element={<Register/>} />
             </Routes>
         </BrowserRouter>
