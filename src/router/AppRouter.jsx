@@ -10,15 +10,9 @@ function AppRouter(){
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/">
-                    <Route element={<PublicRoutes  isAuthenticate={true} />}>
-                        <Route path="register" element={<Register/>}/>
-                        <Route path="login" element={<Login/>}/>
-                        <Route path='loginWithPhone' element={<LoginWithPhone/>}/>
-                    </Route>
-                </Route>
-                <Route>
-                    <Route element={<PrivatedRoutes isAuthenticate={false}/>}>
+                        <Route path="/register" element={<Register/>}/>
+                        <Route path="/login" element={<Login/>}/>
+                        <Route path='/loginWithPhone' element={<LoginWithPhone/>}/>
                         <Route path="/home" element={<MainPage/>}/>
                         <Route path="/reports" element={<h1>Reports</h1>}/>
                         <Route path="/messages" element={<h1>Messages</h1>}/>
@@ -28,8 +22,6 @@ function AppRouter(){
                         <Route path="/upgrade" element={<h1>Upgrade to Pro</h1>}/>
                         <Route path="/help" element={<h1>Help Center</h1>}/>
                         <Route path="/settings" element={<h1>Settings</h1>}/>
-                    </Route>
-                </Route>
             </Routes>
         </BrowserRouter>
     )
