@@ -29,7 +29,7 @@ const Login = () => {
       Swal.fire({
         title: "Oops!",
         text: "Ha ocurrido un error, por favor verifique sus credenciales",
-        icon: "Error"
+        icon: "error"
       })
     }
   
@@ -167,7 +167,7 @@ const Login = () => {
                             justify-center
                             gap-4"
                     type="button"
-                    onClick={()=> navigate('loginWithPhone')}
+                    onClick={()=> navigate('phone')}
                   >
                     Ingresar con celular
                     <FaPhone />
