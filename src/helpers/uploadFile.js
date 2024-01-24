@@ -1,5 +1,5 @@
 import axios from 'axios'
-const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dsgfgsjud/upload'
+const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dsgfgsjud/auto/upload'
 
 export const saveImage = async file =>{
     const body={
@@ -8,9 +8,9 @@ export const saveImage = async file =>{
         upload_preset: 'ml_default'
     }
     const headers = {
-        'Content-Type': 'application/invite-team-members',
+        'Content-Type': 'multipart/form-data',
     }
     const response = await axios.post(CLOUDINARY_URL, body, {headers})
-    return response.data.secure_url
+    return response.data.url
 }
 
