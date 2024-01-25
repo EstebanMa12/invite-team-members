@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 
-const PrivateRoutes = ({ isAuthenticated, redirectPath = "/Register", children }) => {
+const PrivateRoutes = ({ isAuthenticated, redirectPath = "/login", children }) => {
   if (!isAuthenticated) {
     return <Navigate to={redirectPath} replace />;
   }

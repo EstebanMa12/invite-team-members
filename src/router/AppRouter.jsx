@@ -2,7 +2,7 @@
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PublicRoutes from "./PublicRouter";
-import PrivatedRoutes from "./PrivatedRouter";
+import PrivatedRoutes from "./PrivateRouter";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import LoginWithPhone from "../pages/LoginWithPhone";
@@ -13,6 +13,7 @@ import {onAuthStateChanged} from 'firebase/auth'
 import { setIsAuthenticate, setUser } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 import { auth } from "../firebase/firebaseConfig";
+import { FaLessThanEqual } from "react-icons/fa6";
 
 function AppRouter(){
     const { isAunthenticate, user }= useSelector(store => store.user)
@@ -42,10 +43,10 @@ function AppRouter(){
         <BrowserRouter>
             <Routes>
                 <Route path="/">
-                    <Route element={<PublicRoutes isAunthenticate={true}/>}>
+                    <Route element={<PublicRoutes isAunthenticate={false}/>}>
                         <Route path="login" element={<Login/>} />
                         <Route path="login/phone" element={<LoginWithPhone/>} />
-                        <Route path="Register" element={<Register/>} />
+                        <Route path="register" element={<Register/>} />
                     </Route>
                     <Route element={<PrivatedRoutes isAunthenticate={true}/>}>
                         <Route path="home" element={<Home/>} />

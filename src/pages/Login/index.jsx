@@ -28,12 +28,12 @@ const Login = () => {
 
       Swal.fire({
         title: "Oops!",
-        text: "Ha ocurrido un error, por favor verifique sus credenciales",
+        text: "Ocurrió un error al iniciar sesión",
         icon: "error"
       })
     }
   
-    if ( error === false ) {
+    if ( isAutheticate && user) {
       Swal.fire({
         title: `Bienvenido ${user.name}!`,
         text: "Has iniciado sesión exitosamente",
