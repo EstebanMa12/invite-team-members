@@ -11,8 +11,6 @@ const Register = () => {
     const handleRegister = async (data) => {
         const file = data.photoUrl[0]
         const imageUrl = await saveImage(file)
-        // Datos de la imagen 
-        console.log(`Esta es la url de la imagen: ${imageUrl}`);
 
         const userData = {
             name: data.displayName,
