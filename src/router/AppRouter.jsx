@@ -43,12 +43,12 @@ function AppRouter(){
         <BrowserRouter>
             <Routes>
                 <Route path="/">
-                    <Route element={<PublicRoutes isAunthenticate={false}/>}>
+                    <Route element={<PublicRoutes isAunthenticate={isAunthenticate}/>}>
                         <Route path="login" element={<Login/>} />
                         <Route path="login/phone" element={<LoginWithPhone/>} />
                         <Route path="register" element={<Register/>} />
                     </Route>
-                    <Route element={<PrivatedRoutes isAunthenticate={true}/>}>
+                    <Route element={<PrivatedRoutes isAunthenticate={isAunthenticate}/>}>
                         <Route path="home" element={<Home/>} />
                         <Route index element={<Home/>}/>
                     </Route>
