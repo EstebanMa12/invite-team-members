@@ -1,56 +1,60 @@
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 
-const collectionName = 'users'
+const collectionName = "users";
 
 export const createUserInCollection = async (uid, data) => {
-    try {
-        const docRef = doc(db, collectionName, uid);
-        await setDoc(docRef, data);
-        return {
-            uid,
-            ...data
-        }
-    } catch (error) {
-        console.warn(error);
-        return false
-    }
-}
+  try {
+    const docRef = doc(db, collectionName, uid);
+    await setDoc(docRef, data);
+    return {
+      id: uid,
+      ...data,
+    };
+  } catch (error) {
+    console.warn(error);
+    return false;
+  }
+};
 
-export const getUserById = async (uid) => {
-    try {
-        const docRef = doc(db, collectionName, uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            return {
-                uid,
-                ...docSnap.data()
-            }
-        } else {
-            return false
-        }
-    } catch (error) {
-        console.warn(error);
-        return false
+export const getUserFromCollection = async (uid) => {
+  try {
+    const userRef = doc(db, collectionName, uid);
+    const user = await getDoc(userRef);
+    if (user.exists()) {
+      return {
+        id: user.id,
+        ...user.data(),
+      };
+    } else {
+      return null;
     }
-}
+  } catch (error) {
+    console.warn(error);
+    return false;
+  }
+};
 
-export const loginFromFirestore = async ( userData ) =>{
-    try {
-        const user = await getUserById(userData.uid);
-        if (user) {
-            return user
-        } else {
-            return await createUserInCollection(userData.uid, {
-                name: userData.displayName,
-                photoURL: userData.photoURL,
-                accessToken: userData.accessToken,
-                email: userData.email,
-            });
-        }
+export const loginFromFirestore = async (userData) => {
+  try {
+    let userLogged = await getUserFromCollection(userData.uid);
+    if (userLogged) {
+      return userLogged;
+    } else {
+      const newUser = {
+        name: userData.displayName,
+        photoUrl: userData.photoURL,
+        accessToken: userData.accessToken,
+        /* Otra información de usuario */
+      };
+      await createUserInCollection(userData.uid, newUser);
+      return {
+        id: userData.uid,
+        ...newUser,
+      };
     }
-    catch (error) {
-        console.warn(error);
-        return false
-    }
-}
+  } catch (error) {
+    console.warn(error);
+    return false;
+  }
+};

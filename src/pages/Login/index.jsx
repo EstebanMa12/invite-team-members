@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isAutheticate, user, error} = useSelector((store)=> store.user)
+  const { isAuthenticate, user, error} = useSelector((store)=> store.user)
 
   const { register, handleSubmit } = useForm();
 
@@ -33,7 +33,7 @@ const Login = () => {
       })
     }
   
-    if ( isAutheticate && user) {
+    if ( isAuthenticate && user) {
       Swal.fire({
         title: `Bienvenido ${user.name}!`,
         text: "Has iniciado sesión exitosamente",
