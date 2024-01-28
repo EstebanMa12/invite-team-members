@@ -21,20 +21,21 @@ function AppRouter(){
     const dispatch = useDispatch()
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if(user?.uid && !user){
+        onAuthStateChanged(auth, (userLogged) => {
+            if (userLogged?.uid && !user) {
                 dispatch(setIsAuthenticate(true))
-                dispatch(setUser({
-                    id: user.uid,
-                    email: user.email,
-                    name: user.displayName,
-                    photoUrl: user.photoURL,
-                    accessToken: user.accessToken
-                }))
+                dispatch(setUser({ 
+                    id: userLogged.uid, 
+                    email: userLogged.email, 
+                    name: userLogged.displayName, 
+                    photoURL: userLogged.photoURL, 
+                    accessToken: userLogged.accessToken 
+            }))
+              // dispatch(setError(false))
             }
-    })
-    setChecking(false)
-    }, [dispatch, user])
+        })
+        setChecking(false)
+        }, [dispatch, user])
     if(checking){
         return <h1>Wait...</h1>
     }

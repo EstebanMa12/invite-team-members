@@ -23,11 +23,11 @@ export const createAnAccountAsync = (newUser) => async (dispatch) => {
         );
         await updateProfile(auth.currentUser, {
         displayName: newUser.name,
-        photoURL: newUser.photoURL,
+        photoURL: newUser.photoUrl,
         });
         const userLogged = await createUserInCollection(user.uid, {
         name: newUser.name,
-        photoURL: newUser.photoURL,
+        photoURL: newUser.photoUrl,
         accessToken: user.accessToken,
         email: newUser.email,
         });
