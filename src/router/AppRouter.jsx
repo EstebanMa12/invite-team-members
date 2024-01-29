@@ -14,12 +14,15 @@ import { setIsAuthenticate, setUser } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 import { auth } from "../firebase/firebaseConfig";
 import { FaLessThanEqual } from "react-icons/fa6";
+import InsertCode from "../pages/InsertCode";
 
 function AppRouter(){
-    const { isAunthenticate, user }= useSelector(store => store.user)
+    const { isAuthenticate, user }= useSelector(store => store.user)
     const [checking, setChecking] = useState(true)
     const dispatch = useDispatch()
 
+    console.log(isAuthenticate);
+    console.log(user)
     useEffect(() => {
         onAuthStateChanged(auth, (userLogged) => {
             if (userLogged?.uid && !user) {
@@ -44,12 +47,13 @@ function AppRouter(){
         <BrowserRouter>
             <Routes>
                 <Route path="/">
-                    <Route element={<PublicRoutes isAunthenticate={isAunthenticate}/>}>
+                    <Route element={<PublicRoutes isAuthenticate={isAuthenticate}/>}>
                         <Route path="login" element={<Login/>} />
                         <Route path="login/phone" element={<LoginWithPhone/>} />
                         <Route path="register" element={<Register/>} />
+                        <Route path="insert-code" element={<InsertCode/>}/>
                     </Route>
-                    <Route element={<PrivatedRoutes isAunthenticate={isAunthenticate}/>}>
+                    <Route element={<PrivatedRoutes isAuthenticate={isAuthenticate}/>}>
                         <Route path="/home" element={<Home/>} />
                         <Route index element={<Home/>}/>
                     </Route>

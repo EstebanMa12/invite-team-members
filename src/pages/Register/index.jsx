@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createAnAccountAsync } from "../../redux/user/userThunks";
 import { saveImage } from "../../helpers/uploadFile";
+import {useNavigate} from "react-router-dom"
 
 const Register = () => {
     const { register, handleSubmit } = useForm();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleRegister = async (data) => {
         if (!data.photoUrl) {

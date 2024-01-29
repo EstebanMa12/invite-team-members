@@ -23,10 +23,13 @@ const LoginWithPhone = () => {
     }
 
     const onSubmit = async (data) => {
-        console.log(data);
+        console.log(data)
+        const phone = data.phone.replace(/[-\s]/g,'');
+        console.log(phone)
+
         generateRecaptch()
         const appVerifier = window.recaptchaVerifier
-        sendSMS(data.phone,appVerifier)
+        sendSMS(phone,appVerifier)
     }
 
     const sendSMS = (phone, recaptchaVerifier) =>{
@@ -49,13 +52,13 @@ const LoginWithPhone = () => {
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Something went wrong!',
-                footer: '<a href="">Why do I have this issue?</a>'
             })
         })
     }
     return (
         <>
-        <form className="max-w-sm mx-auto">
+        <form className="max-w-sm mx-auto"
+        onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="phone-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone number:</label>
         <div className="relative">
             <div className="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
@@ -69,10 +72,11 @@ const LoginWithPhone = () => {
         </div>
         <p id="helper-text-explanation" className="mt-2 text-sm text-gray-500 dark:text-gray-400">Select a phone number that matches the format.</p>
         <div id="recaptcha-container"></div>
-        <button type="submit" onClick={handleSubmit(onSubmit)} className="w-full px-4 py-2 mt-4 text-base font-semibold text-center text-white transition duration-200 ease-in bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 ">
+        <button type="submit" className="w-full px-4 py-2 mt-4 text-base font-semibold text-center text-white transition duration-200 ease-in bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 ">
             Send SMS
         </button>
     </form>
+    <div id='recaptcha-container'></div>
         </>
     )
 }
