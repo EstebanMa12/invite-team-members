@@ -27,7 +27,6 @@ const InsertCode = () => {
               className='bg-green-400 text-white h-10 rounded-md my-5 p-5 flex place-items-center gap-2'
           >Confirmar codigo</button>
         </form>
-        <div id='recaptcha-container'></div>
       </main>
     )
 }

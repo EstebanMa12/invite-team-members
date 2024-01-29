@@ -7,7 +7,7 @@ const initialState = {
     permission: null,
 }
 
-const attributesSlice ={
+const attributesSlice =createSlice({
     name: "attributes",
     initialState,
     reducers: {
@@ -24,6 +24,6 @@ const attributesSlice ={
             state.permission = action.payload;
         },
     },
-};
+});
 export const {setUser, setRole, setProjects, setPermission}= attributesSlice.actions;
 

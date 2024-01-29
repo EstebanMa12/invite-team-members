@@ -9,8 +9,6 @@ import {
 import { setError, setIsAuthenticate, setUser } from "./userSlice";
 import { auth } from "../../firebase/firebaseConfig";
 import { createUserInCollection } from "../../services/user/userService";
-import { doc, getDoc, setDoc, addDoc, deleteDoc } from "firebase/firestore";
-import { db } from "../../firebase/firebaseConfig";
 
 
 

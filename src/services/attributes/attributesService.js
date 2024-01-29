@@ -60,7 +60,7 @@ export const attributesFromFirestore = async (attributesData) => {
     }
 }
 
-const updateAttributeInUserDocument = async (userId, attributeKey, value) => {
+export const updateAttributeInUserDocument = async (userId, attributeKey, value) => {
     try {
         const userRef = doc(db, collectionName, userId)
         await setDoc(userRef, { [attributeKey]: value }, { merge: true })
