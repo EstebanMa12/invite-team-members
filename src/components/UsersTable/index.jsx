@@ -4,6 +4,7 @@ import Profile from "../Profile";
 import { useEffect, useState } from 'react';
 import { getGuest } from "../../redux/guest/guestThunks";
 import { useDispatch, useSelector } from "react-redux";
+import { getUserByEmailFromFirestore } from "../../services/user/userService";
 
 const PermissionSelection = ({ initialPermission, onChange }) => {
     const [permission, setPermission] = useState(initialPermission);
@@ -34,13 +35,20 @@ const UsersTable = ({onOpenModal}) => {
     const dispatch = useDispatch();
     const {guest} = useSelector((store)=>store.guests)
     const {user} = useSelector((store)=>store.user)
+    const [userData, setUserData] = useState(null);
 
-    console.log(guest);
 
 
     useEffect(() => {
         dispatch(getGuest());
     }, []);
+
+    useEffect(() => {
+        guest.forEach(async(item)=>{
+            const userData = await getUserByEmailFromFirestore(item.email)
+            setUserData(userData)
+        })
+    }, [guest]);
 
     function RoleBadge({ role }) {
         const roleClasses = getRoleClasses(role);
@@ -122,10 +130,14 @@ const UsersTable = ({onOpenModal}) => {
                     {guest.map((item, index) => (
                         <tr key={index} className="bg-white border-b hover:bg-gray-50">
                             <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap w-1/4 ">
-                                <Profile photoURL={item.photoURL} name={item.name} email={item.email}/>
+                                <Profile photoURL={userData?.photoURL} name={userData?.name} email={item.email}/>
                             </th>
                             <td className="px-6 py-4">
-                                <RoleBadge role={item.role}/>
+                                <RoleBadge role={
+                                    item.permission === 'admin' ? 'admin' : 
+                                    item.permission === 'can-edit' ? 'editor' : 
+                                    item.permission === 'can-view' ? 'guest' : ''
+                                }/>
                             </td>
                             <td className="px-6 py-4">
                                 <DropdownList/> 

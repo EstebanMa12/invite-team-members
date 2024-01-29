@@ -70,3 +70,21 @@ export const getEmailsFromFirestore = async () => {
   }
 }
 
+export const getUserByEmailFromFirestore = async (email) => {
+  try {
+    const querySnapshot = await getDocs(collection(db, collectionName));
+    const user = querySnapshot.docs.find((doc) => doc.data().email === email);
+    if (user) {
+      return {
+        id: user.id,
+        ...user.data(),
+      };
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.warn(error);
+    return false;
+  }
+}
+
