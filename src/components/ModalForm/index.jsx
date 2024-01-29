@@ -5,6 +5,7 @@ import {  useSelector } from 'react-redux';
 import {useForm} from 'react-hook-form';
 import { useDispatch } from 'react-redux'; 
 import { createGuest } from '../../redux/guest/guestThunks';
+import { setGuest } from '../../redux/guest/guestSlice';
 const EmailInput = ({ email, onChange }) => {
   
   return (
@@ -80,6 +81,8 @@ const ModalForm = ({closeModal}) => {
       if(row.email !== '' && row.projects.length !== 0 && row.permission !== ''){
         row.owner = user.email;
         dispatch(createGuest(row));
+        // Actualizar el estado de la tabla
+        // setGuest(prevGuests => [...prevGuests, row]);
       }
     }
     );

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { getGuest } from "../../redux/guest/guestThunks";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserByEmailFromFirestore } from "../../services/user/userService";
+import { getProjects } from "../../redux/projects/projectsThunks";
 
 const PermissionSelection = ({ initialPermission, onChange }) => {
     const [permission, setPermission] = useState(initialPermission);
@@ -37,11 +38,17 @@ const UsersTable = ({onOpenModal}) => {
     const {user} = useSelector((store)=>store.user)
     const [userData, setUserData] = useState(null);
 
+    const {projects} = useSelector(store => store.projects)
+    useEffect(() => {
+        dispatch(getProjects())
+    }
+    , [dispatch])
+
 
 
     useEffect(() => {
         dispatch(getGuest());
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         guest.forEach(async(item)=>{
