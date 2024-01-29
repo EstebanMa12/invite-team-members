@@ -13,7 +13,6 @@ import {onAuthStateChanged} from 'firebase/auth'
 import { setIsAuthenticate, setUser } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 import { auth } from "../firebase/firebaseConfig";
-import { FaLessThanEqual } from "react-icons/fa6";
 import InsertCode from "../pages/InsertCode";
 
 function AppRouter(){
@@ -21,8 +20,6 @@ function AppRouter(){
     const [checking, setChecking] = useState(true)
     const dispatch = useDispatch()
 
-    console.log(isAuthenticate);
-    console.log(user)
     useEffect(() => {
         onAuthStateChanged(auth, (userLogged) => {
             if (userLogged?.uid && !user) {

@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom"
 
-const PublicRoutes = ({ isAuthenticated, redirectPath = "/home", children }) => {
-    if (isAuthenticated) {
+const PublicRoutes = ({ isAuthenticate, redirectPath = "/home", children }) => {
+    if (isAuthenticate) {
         return <Navigate to={redirectPath}/>
     }
     

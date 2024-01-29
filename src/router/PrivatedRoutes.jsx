@@ -2,11 +2,11 @@ import { Navigate, Outlet } from "react-router-dom";
 
 
 const PrivatedRoutes = ({ 
-  isAuthenticated, 
+  isAuthenticate, 
   redirectPath = "/register", 
   children 
 }) => {
-  if (!isAuthenticated) {
+  if (!isAuthenticate) {
     return <Navigate to={redirectPath} />;
   }
 
