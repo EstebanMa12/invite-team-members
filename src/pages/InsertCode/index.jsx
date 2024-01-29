@@ -11,7 +11,7 @@ const InsertCode = () => {
     }
   
     return (
-      <main>
+      <main className="flex h-screen justify-center items-center">
         <h1 className='text-3xl font-bold underline my-3'>Insertar su codigo de verificacion</h1>
         <form
           className='grid justify-start'  
