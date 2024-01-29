@@ -39,6 +39,9 @@ const UsersTable = ({onOpenModal}) => {
     const [userData, setUserData] = useState(null);
 
     const {projects} = useSelector(store => store.projects)
+
+    console.log(projects);
+
     useEffect(() => {
         dispatch(getProjects())
     }
@@ -134,7 +137,7 @@ const UsersTable = ({onOpenModal}) => {
                             <PermissionSelection onChange={(e) => handlePermissionChange(e, index)}/>                      
                         </td>
                     </tr>
-                    {guest.map((item, index) => (
+                    {guest.filter(item => item.owner=== user.email).map((item, index) => (
                         <tr key={index} className="bg-white border-b hover:bg-gray-50">
                             <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap w-1/4 ">
                                 <Profile photoURL={userData?.photoURL} name={userData?.name} email={item.email}/>
