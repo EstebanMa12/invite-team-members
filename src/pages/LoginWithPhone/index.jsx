@@ -11,20 +11,21 @@ const LoginWithPhone = () => {
 
     const generateRecaptch = () =>{
         try {
-            const recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+            window.recaptchaVerifier = new RecaptchaVerifier(
+                auth,
+                'recaptch-container',
+                {
                 'size': 'invisible',
                 'callback': (response) => {
                     console.log(response)
                 }
             })
-            return recaptchaVerifier
         } catch (error) {
             console.warn(error)
         }
     }
 
     const onSubmit = async (data) => {
-        console.log(data)
         const phone = data.phone.replace(/[-\s]/g,'');
         console.log(phone)
 
@@ -41,7 +42,7 @@ const LoginWithPhone = () => {
             Swal.fire({
                 icon: 'success',
                 title: 'SMS sent',
-                text: 'Check your phone',
+                text: `Check the phone +57${phone}`,
                 showConfirmButton: false,
                 timer: 2000
             })
@@ -88,7 +89,7 @@ const LoginWithPhone = () => {
                   </Link>
                 </p>
             </form>
-            <div id='recaptcha-container'></div>
+            <div id='recaptch-container'></div>
         </div>
         </>
     )

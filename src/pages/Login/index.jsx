@@ -42,7 +42,7 @@ const Login = () => {
         console.log('Redirigiendo a Home');
         navigate('/home')})
     }
-  }, [error, navigate])
+  }, [error])
 
   return (
     <>
