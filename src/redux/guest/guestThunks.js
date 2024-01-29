@@ -15,7 +15,7 @@ export const createGuest = (guest) => async (dispatch) => {
     try {
         const response = await addDoc(projectCollection, guest);
         dispatch(setGuest({id: response.id, ...guest}))
-    } catch (error) {
+    } catch (error) {   
         console.warn(error);
         dispatch(
             setError({ error: true, code: error.code, message: error.message })

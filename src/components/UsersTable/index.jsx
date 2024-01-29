@@ -60,7 +60,7 @@ const UsersTable = ({onOpenModal}) => {
     return (
         <div className=" overflow-x-auto shadow-md sm:rounded-lg
         w-full
-        overflow-y-hidden
+        h-full
         ">
             <div className="  items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white ">
                 {/* <label htmlFor="table-search" className="sr-only">Search</label> */}
@@ -99,10 +99,10 @@ const UsersTable = ({onOpenModal}) => {
                 <tbody>
                     <tr className="bg-white border-b  hover:bg-gray-50 ">
                         <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap w-1/4 ">
-                            <Profile/>
+                            <Profile />
                         </th>
                         <td className="px-6 py-4">
-                            <RoleBadge role="guest"/>
+                            <RoleBadge role="admin"/>
                         </td>
                         <td className="px-6 py-4">
                             <DropdownList/> 

@@ -9,8 +9,12 @@ import { FiPhone } from "react-icons/fi";
 import Profile from "../Profile";
 import { Link } from "react-router-dom";
 // import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
+    const {user} = useSelector(store=> store.user)
+    
+
 
   
   return (
@@ -45,7 +49,7 @@ const Sidebar = () => {
         className="relative z-40 w-72 h-screen transition-transform -translate-x-full sm:translate-x-0 border-r flex-grow"
         aria-label="Sidebar"
       >
-        <Profile />
+        <Profile photoURL={user.photoURL} email={user.email} name={user.name}/>
         <div className="h-full px-3 py-4 overflow-y-auto bg-white-50">
           <span className="text-gray-500 text-sm font-medium">GENERAL</span>
           <ul className="space-y-2 font-medium text-gray-500">
