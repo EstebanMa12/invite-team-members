@@ -14,15 +14,30 @@ const guestSlice =createSlice({
         },
         setError: (state, action) => {
             state.error = action.payload
-        },    
-        updateGuest:(state)=>{
-               
-            }
-
+        },
+        addProjectToUser: (state, action) => {
+            state.guest.projects.push(action.payload)
+        },
+        deleteProjectFromUser: (state, action) => {
+            state.guest.projects = state.guest.projects.filter(project => project.id !== action.payload)
+        },
+        updateProjectFromUser: (state, action) => {
+            state.guest.projects = state.guest.projects.map(project => project.id === action.payload.id ? action.payload : project)
+        },
+        setUserProjects: (state, action) => {
+            state.guest.projects = action.payload
+        },
     },
 });
 
-export const { setGuest, setError } = guestSlice.actions;
+export const { 
+    setGuest, 
+    setError,
+    addProjectToUser,
+    deleteProjectFromUser,
+    updateProjectFromUser,
+    setUserProjects
+    } = guestSlice.actions;
 export default guestSlice.reducer;
 
 

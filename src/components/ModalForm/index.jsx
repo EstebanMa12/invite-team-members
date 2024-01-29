@@ -50,20 +50,11 @@ const PermissionSelection = ({ initialPermission, onChange }) => {
 
 const ModalForm = ({closeModal}) => {
 
-  const { register, handleSubmitModal} = useForm();
+  const { register, handleSubmit} = useForm();
   const dispatch = useDispatch();
 
   const {projects} = useSelector((store)=>store.projects)
 
-  const handleSubmitGuest = async (data) => {
-    const {email, projects, permission} = data;
-    const newGuest = {
-      email,
-      projects,
-      permission
-    }
-    dispatch(setGuest(newGuest));
-  }
 
   const [rows, setRows] = useState([
     {email:'',projects:[],permission:''},
@@ -77,10 +68,17 @@ const ModalForm = ({closeModal}) => {
     projectsArr.push( project.name);
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // send invite here
-    console.log(rows);
+  const handleSubmitModal = async(data) => {
+    const {email, projects, permission} = data;
+    console.log(email);
+    console.log(projects);
+    console.log(permission);
+    const newGuest = {
+      email,
+      projects,
+      permission
+    }
+    dispatch(setGuest(newGuest));
     closeModal();
   };
 
@@ -118,7 +116,7 @@ const ModalForm = ({closeModal}) => {
             Invite people to My workspace
           </h1>          
           <div>
-          <form onSubmit={handleSubmit} className="w-full max-w-xl mx-auto">
+          <form onSubmit={handleSubmit(handleSubmitModal)} className="w-full max-w-xl mx-auto">
             <table className="w-full">
               <thead>
                 <tr>
@@ -131,7 +129,7 @@ const ModalForm = ({closeModal}) => {
               {rows.map((row, index) => (
                 <tr key={index}>
                   <td className='px-6 py-2'>
-                    <EmailInput email={row.email} onChange={(e) => handleEmailChange(e, index)} />
+                    <EmailInput email={row.email} onChange={(e) => handleEmailChange(e, index)}/>
                   </td>
                   <td className='px-6 py-2'>
                     <DropdownCheckbox
@@ -141,7 +139,10 @@ const ModalForm = ({closeModal}) => {
                     />
                   </td>
                   <td className='px-6 py-2'>
-                    <PermissionSelection permission={row.permission} onChange={(e) => handlePermissionChange(e, index)} />
+                    <PermissionSelection 
+                    permission={row.permission} 
+                    onChange={(e) => handlePermissionChange(e, index)} 
+                    />
                   </td>
                 </tr>
               ))}
