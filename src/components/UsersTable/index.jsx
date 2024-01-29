@@ -1,6 +1,32 @@
 /* eslint-disable react/no-unknown-property */
 import DropdownList from "../DropdownList";
 import Profile from "../Profile";
+import { useState } from 'react';
+
+const PermissionSelection = ({ initialPermission, onChange }) => {
+    const [permission, setPermission] = useState(initialPermission);
+  
+    const handlePermissionChange = (e) => {
+      setPermission(e.target.value);
+      onChange(e);
+    };
+  
+    return (
+      <div className="flex flex-col justify-center items-center">
+        <select
+          name="role"
+          id="role"
+          className="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-28 bg-gray-50 focus:ring-pink-500 focus:border-pink-500 focus:text-pink-700 focus:font-bold"
+          value={permission}
+          onChange={handlePermissionChange}
+        >
+          <option value="admin">Admin</option>
+          <option value="can-edit">Can edit</option>
+          <option value="can-view">Can view</option>
+        </select>
+      </div>
+    );
+  };
 
 const UsersTable = ({onOpenModal}) => {
     function RoleBadge({ role }) {
@@ -25,6 +51,11 @@ const UsersTable = ({onOpenModal}) => {
         }
       }
 
+      const handlePermissionChange = (e, index) => {
+        const updatedRows = [...rows];
+        updatedRows[index].permission = e.target.value;
+        setRows(updatedRows);
+      };
 
     return (
         <div className=" overflow-x-auto shadow-md sm:rounded-lg
@@ -77,23 +108,10 @@ const UsersTable = ({onOpenModal}) => {
                             <DropdownList/> 
                         </td>
                         <td className="px-6 py-4">
-                            <DropdownList/>                      
+                            <PermissionSelection onChange={(e) => handlePermissionChange(e, index)}/>                      
                         </td>
                     </tr>
-                    <tr className="bg-white border-b  hover:bg-gray-50 ">
-                        <th scope="row" className="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                            <Profile/>
-                        </th>
-                        <td >
-                            <RoleBadge role="admin"/>
-                        </td>
-                        <td className="px-6 py-4">
-                            <DropdownList/>                      
-                        </td>
-                        <td className="px-6 py-4">
-                            <DropdownList/>                      
-                        </td>
-                    </tr>                    
+                                        
                 </tbody>
             </table>
         </div>

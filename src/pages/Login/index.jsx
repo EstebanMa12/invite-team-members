@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 
 import { FaGooglePlusG, FaPhone  } from 'react-icons/fa6'
 import { useDispatch, useSelector } from 'react-redux';
