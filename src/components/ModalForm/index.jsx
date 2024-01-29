@@ -5,7 +5,8 @@ import {  useSelector } from 'react-redux';
 import {useForm} from 'react-hook-form';
 import { useDispatch } from 'react-redux'; 
 import { setGuest } from '../../redux/guest/guestSlice';
-const EmailInput = ({ email, onChange }) => {
+import { createGuest } from '../../redux/guest/guestThunks';
+const EmailInput = ({ email, onChange , register}) => {
   return (
     <div className="flex flex-col justify-center items-center">
       <input
@@ -62,23 +63,24 @@ const ModalForm = ({closeModal}) => {
     {email:'',projects:[],permission:''}
   ]);
 
+
   const projectsArr = [];
 
   projects.forEach((project) => {
     projectsArr.push( project.name);
   });
 
-  const handleSubmitModal = async(data) => {
-    const {email, projects, permission} = data;
-    console.log(email);
-    console.log(projects);
-    console.log(permission);
-    const newGuest = {
-      email,
-      projects,
-      permission
+  const handleSubmitModal = async() => {
+
+    const updatedRows = [...rows];
+    console.log(updatedRows);
+    // Para cada row quiero hacer un setGuest si sus campos estan llenos
+    updatedRows.forEach((row) => {
+      if(row.email !== '' && row.projects.length !== 0 && row.permission !== ''){
+        dispatch(createGuest(row));
+      }
     }
-    dispatch(setGuest(newGuest));
+    );
     closeModal();
   };
 
@@ -129,7 +131,8 @@ const ModalForm = ({closeModal}) => {
               {rows.map((row, index) => (
                 <tr key={index}>
                   <td className='px-6 py-2'>
-                    <EmailInput email={row.email} onChange={(e) => handleEmailChange(e, index)}/>
+                    <EmailInput email={row.email} onChange={(e) => handleEmailChange(e, index)}
+                    />
                   </td>
                   <td className='px-6 py-2'>
                     <DropdownCheckbox

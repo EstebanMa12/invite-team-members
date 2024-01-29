@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 
-const DropdownCheckbox = ({ options, onChange }) => {
+const DropdownCheckbox = ({ options, onChange, selectedOptions }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState([]);
   const [toggleName, setToggleName] = useState('Select Projects');
 
   useEffect(() => {
@@ -19,7 +18,7 @@ const DropdownCheckbox = ({ options, onChange }) => {
 
     if (option === 'All Projects') {
       updatedOptions = options;
-      setSelectedOptions(['All Projects']);
+      onChange(['All Projects']);
     }else{
       updatedOptions = selectedOptions.includes(option)
       ? selectedOptions.filter((selectedOption) => selectedOption !== option)
@@ -27,7 +26,7 @@ const DropdownCheckbox = ({ options, onChange }) => {
     }
 
 
-    setSelectedOptions(updatedOptions);
+    onChange(updatedOptions);
   };
 
   const updateToggleName = () => {
