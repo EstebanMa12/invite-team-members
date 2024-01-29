@@ -108,15 +108,15 @@ const Sidebar = () => {
               </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to='/home'
                 className="flex items-center p-2 text-gray-900 hover:bg-pink-100  group"
               >
                 <IoIosPeople />
                 <span className="ms-3 text-gray-500 hover:text-pink-800">
                   Manage Members
                 </span>
-              </a>
+              </Link>
             </li>
           </ul>
           <div className="flex flex-col absolute bottom-5 ">

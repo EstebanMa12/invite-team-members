@@ -14,7 +14,7 @@ import { setIsAuthenticate, setUser } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 import { auth } from "../firebase/firebaseConfig";
 import InsertCode from "../pages/InsertCode";
-import ProjectsCRUD from "../pages/ProjectsCRUD";
+import Projects from "../pages/Projects";
 
 function AppRouter(){
     const { isAuthenticate, user }= useSelector(store => store.user)
@@ -53,7 +53,7 @@ function AppRouter(){
                     </Route>
                     <Route element={<PrivatedRoutes isAuthenticate={isAuthenticate}/>}>
                         <Route path="/home" element={<Home/>} />
-                        <Route path="/projects" element={<ProjectsCRUD/>}/>
+                        <Route path="/projects" element={<Projects/>}/>
                         <Route index element={<Home/>}/>
                     </Route>
                 </Route>

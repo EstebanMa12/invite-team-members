@@ -10,10 +10,10 @@ const projectsSlice = createSlice({
     initialState,
     reducers: {
         setProjects: (state, action) => {
-            state.name = action.payload;
+            state.projects = action.payload;
         },
         addProjects: (state, action) =>{
-            state.products.push(action.payload);
+            state.projects.push(action.payload);
         },
         setError: (state, action) => {
             state.error = action.payload;

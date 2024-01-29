@@ -11,7 +11,7 @@ export const getProjects = () => {
             let tempArr = []
             const response = await getDocs(projectCollection);
             response.forEach((item)=>{
-                tempArr.push({id: item.id, ...item.data()})
+                tempArr.push({id: item.id, ...item.data() })
             });
             dispatch(setProjects(tempArr));
         } catch (error) {
