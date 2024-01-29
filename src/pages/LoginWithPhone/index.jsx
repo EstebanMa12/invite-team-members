@@ -3,6 +3,7 @@ import { auth } from '../../firebase/firebaseConfig'
 import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const LoginWithPhone = () => {
     const { register, handleSubmit } = useForm()
@@ -76,6 +77,16 @@ const LoginWithPhone = () => {
                 <button type="submit" className="w-full px-4 py-2 mt-4 text-base font-semibold text-center text-white transition duration-200 ease-in bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 ">
                     Send SMS
                 </button>
+                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                  Don’t have an account yet?{" "}
+                  <Link
+                    to="/Register"
+                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  >
+                    {" "}
+                    Sign up
+                  </Link>
+                </p>
             </form>
             <div id='recaptcha-container'></div>
         </div>
