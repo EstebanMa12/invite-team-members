@@ -8,7 +8,7 @@ const projectCollection = collection(db, "projects");
 export const getProjects = () => {
     return async (dispatch) => {
         try {
-            const tempArr = []
+            let tempArr = []
             const response = await getDocs(projectCollection);
             response.forEach((item)=>{
                 tempArr.push({id: item.id, ...item.data()})

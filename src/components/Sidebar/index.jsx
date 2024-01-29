@@ -7,6 +7,7 @@ import { IoIosPeople } from "react-icons/io";
 import { MdOutlineRocketLaunch } from "react-icons/md";
 import { FiPhone } from "react-icons/fi";
 import Profile from "../Profile";
+import { Link } from "react-router-dom";
 // import { useState } from "react";
 
 const Sidebar = () => {
@@ -96,15 +97,15 @@ const Sidebar = () => {
           <ul className="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 ">
             <span className="text-gray-500 text-sm">WORKSPACE</span>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/projects"
                 className="flex items-center p-2 text-gray-900 hover:bg-pink-100  group"
               >
                 <VscFileSubmodule />
                 <span className="ms-3 text-gray-500 hover:text-pink-800">
                   Projects
                 </span>
-              </a>
+              </Link>
             </li>
             <li>
               <a
