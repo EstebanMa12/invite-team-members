@@ -4,9 +4,9 @@ import DropdownCheckbox from '../DropdownCheckbox';
 import {  useSelector } from 'react-redux';
 import {useForm} from 'react-hook-form';
 import { useDispatch } from 'react-redux'; 
-import { setGuest } from '../../redux/guest/guestSlice';
 import { createGuest } from '../../redux/guest/guestThunks';
-const EmailInput = ({ email, onChange , register}) => {
+const EmailInput = ({ email, onChange }) => {
+  
   return (
     <div className="flex flex-col justify-center items-center">
       <input

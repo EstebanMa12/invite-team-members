@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, getDocs, collection } from "firebase/firestore";
 import { db } from "../../firebase/firebaseConfig";
 
 const collectionName = "users";
@@ -58,3 +58,15 @@ export const loginFromFirestore = async (userData) => {
     return false;
   }
 };
+
+export const getEmailsFromFirestore = async () => {
+  try {
+    const querySnapshot = await getDocs(collection(db, collectionName));
+    const emails = querySnapshot.docs.map((doc) => doc.data().email);
+    return emails;
+  } catch (error) {
+    console.warn(error);
+    return false;
+  }
+}
+
