@@ -1,22 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    name: null,
-    createAt: null,
+    projects: [],
+    error: null
 }
 
 const projectsSlice = createSlice({
     name: "projects",
     initialState,
     reducers: {
-        setName: (state, action) => {
+        setProjects: (state, action) => {
             state.name = action.payload;
         },
-        setCreateAt: (state, action) => {
-            state.createAt = action.payload;
+        addProjects: (state, action) =>{
+            state.products.push(action.payload);
+        },
+        setError: (state, action) => {
+            state.error = action.payload;
+        },
+        updateProjects: (state, action) => {
+            state.projects = state.projects.map((project)=> project.id === action.payload.id ? {...action.payload} : project)
+        },
+        deleteProjects: (state, action) => {
+            state.projects = state.projects.filter((project)=> project.id !== action.payload.id)
         },
     },
 });
 
-export const { setName, setCreateAt } = projectsSlice.actions;
+export const { 
+    setProjects, 
+    addProjects,
+    setError,
+    updateProjects,
+    deleteProjects} = projectsSlice.actions;
 export default projectsSlice.reducer;
