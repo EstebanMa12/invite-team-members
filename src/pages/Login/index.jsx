@@ -33,14 +33,16 @@ const Login = () => {
       })
     }
   
-    if ( isAuthenticate && user) {
+    if ( error === false && user ) {
       Swal.fire({
         title: `Bienvenido ${user.name}!`,
         text: "Has iniciado sesión exitosamente",
         icon: "success"
-      }).then(() => navigate('/home'))
+      }).then(() => {
+        console.log('Redirigiendo a Home');
+        navigate('/home')})
     }
-  }, [error])
+  }, [error, navigate])
 
   return (
     <>

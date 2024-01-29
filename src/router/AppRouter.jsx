@@ -1,8 +1,8 @@
 
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import PublicRoutes from "./PublicRouter";
-import PrivatedRoutes from "./PrivateRouter";
+import PublicRoutes from "./PublicRoutes";
+import PrivatedRoutes from "./PrivatedRoutes";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import LoginWithPhone from "../pages/LoginWithPhone";
@@ -50,7 +50,7 @@ function AppRouter(){
                         <Route path="register" element={<Register/>} />
                     </Route>
                     <Route element={<PrivatedRoutes isAunthenticate={isAunthenticate}/>}>
-                        <Route path="home" element={<Home/>} />
+                        <Route path="/home" element={<Home/>} />
                         <Route index element={<Home/>}/>
                     </Route>
                 </Route>
