@@ -6,6 +6,9 @@ import { getGuest } from "../../redux/guest/guestThunks";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserByEmailFromFirestore } from "../../services/user/userService";
 import { getProjects } from "../../redux/projects/projectsThunks";
+import { collection, doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase/firebaseConfig";
+import { get } from "react-hook-form";
 
 const PermissionSelection = ({ initialPermission, onChange }) => {
     const [permission, setPermission] = useState(initialPermission);
@@ -40,6 +43,17 @@ const UsersTable = ({onOpenModal}) => {
 
     const {projects} = useSelector(store => store.projects)
 
+    // useEffect(()=>{
+    //     const fetchUsers = async () => {
+    //         const emails = guest.map(item => item.email);
+    //         const query = query(collection(db, 'users'), where('email', 'in', emails));
+    //         const querySnapshot = await getDocs(query);
+    //         const users = querySnapshot.docs.map(doc => doc.data());
+    //         setUserData(users);
+    // }
+    // fetchUsers();
+    // }, [guest]);
+
     useEffect(() => {
         dispatch(getProjects())
     }
@@ -54,7 +68,6 @@ const UsersTable = ({onOpenModal}) => {
     useEffect(() => {
         guest.forEach(async(item)=>{
             const userData = await getUserByEmailFromFirestore(item.email)
-            console.log(userData);
             setUserData(userData)
         })
     }, [guest]);
