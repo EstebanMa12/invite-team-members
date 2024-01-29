@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import DropdownCheckbox from '../DropdownCheckbox';
+import {  useSelector } from 'react-redux';
 
 const EmailInput = ({ email, onChange }) => {
   return (
@@ -47,13 +48,19 @@ const PermissionSelection = ({ initialPermission, onChange }) => {
 
 const ModalForm = ({closeModal}) => {
 
+  const {projects} = useSelector((store)=>store.projects)
+
   const [rows, setRows] = useState([
     {email:'',projects:[],permission:''},
     {email:'',projects:[],permission:''},
     {email:'',projects:[],permission:''}
   ]);
 
-  const projects = ['Project 1', 'Project 2', 'Project 3'];
+  const projectsArr = [];
+
+  projects.forEach((project) => {
+    projectsArr.push( project.name);
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -113,7 +120,7 @@ const ModalForm = ({closeModal}) => {
                   </td>
                   <td className='px-6 py-2'>
                     <DropdownCheckbox
-                      options={projects}
+                      options={projectsArr}
                       selectedOptions={row.projects}
                       onChange={(selectedProjects) => handleProjectsChange(selectedProjects, index)}
                     />

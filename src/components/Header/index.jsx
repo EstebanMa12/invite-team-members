@@ -1,4 +1,5 @@
 import { FaRegBell } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 const Header = () => {
     return (
         <header className="flex
@@ -9,7 +10,7 @@ const Header = () => {
         border-b
         ">
             <FaRegBell className="cursor-pointer"/>
-            <button className="bg-pink-400 text-white rounded text-xs h-9 w-24 ml-6"> + New Project</button>
+            <Link to='/projects'><button className="bg-pink-400 text-white rounded text-xs h-9 w-24 ml-6"> + New Project</button></Link>
         </header>
     );
     }
