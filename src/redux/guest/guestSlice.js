@@ -14,7 +14,10 @@ const guestSlice =createSlice({
         },
         setError: (state, action) => {
             state.error = action.payload
-        },      
+        },    
+        updateGuest:(state)=>{
+               
+            }
 
     },
 });

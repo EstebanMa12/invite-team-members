@@ -2,7 +2,9 @@
 import { useState } from 'react';
 import DropdownCheckbox from '../DropdownCheckbox';
 import {  useSelector } from 'react-redux';
-
+import {useForm} from 'react-hook-form';
+import { useDispatch } from 'react-redux'; 
+import { setGuest } from '../../redux/guest/guestSlice';
 const EmailInput = ({ email, onChange }) => {
   return (
     <div className="flex flex-col justify-center items-center">
@@ -48,7 +50,20 @@ const PermissionSelection = ({ initialPermission, onChange }) => {
 
 const ModalForm = ({closeModal}) => {
 
+  const { register, handleSubmitModal} = useForm();
+  const dispatch = useDispatch();
+
   const {projects} = useSelector((store)=>store.projects)
+
+  const handleSubmitGuest = async (data) => {
+    const {email, projects, permission} = data;
+    const newGuest = {
+      email,
+      projects,
+      permission
+    }
+    dispatch(setGuest(newGuest));
+  }
 
   const [rows, setRows] = useState([
     {email:'',projects:[],permission:''},
