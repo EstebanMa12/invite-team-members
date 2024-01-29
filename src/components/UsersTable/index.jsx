@@ -40,8 +40,6 @@ const UsersTable = ({onOpenModal}) => {
 
     const {projects} = useSelector(store => store.projects)
 
-    console.log(projects);
-
     useEffect(() => {
         dispatch(getProjects())
     }
@@ -56,6 +54,7 @@ const UsersTable = ({onOpenModal}) => {
     useEffect(() => {
         guest.forEach(async(item)=>{
             const userData = await getUserByEmailFromFirestore(item.email)
+            console.log(userData);
             setUserData(userData)
         })
     }, [guest]);
