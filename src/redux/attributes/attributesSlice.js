@@ -26,4 +26,5 @@ const attributesSlice =createSlice({
     },
 });
 export const {setUser, setRole, setProjects, setPermission}= attributesSlice.actions;
+export default attributesSlice.reducer;
 
