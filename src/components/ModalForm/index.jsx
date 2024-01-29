@@ -55,6 +55,7 @@ const ModalForm = ({closeModal}) => {
   const dispatch = useDispatch();
 
   const {projects} = useSelector((store)=>store.projects)
+  const {user} = useSelector((store)=>store.user)
 
 
   const [rows, setRows] = useState([
@@ -77,6 +78,7 @@ const ModalForm = ({closeModal}) => {
     // Para cada row quiero hacer un setGuest si sus campos estan llenos
     updatedRows.forEach((row) => {
       if(row.email !== '' && row.projects.length !== 0 && row.permission !== ''){
+        row.owner = user.email;
         dispatch(createGuest(row));
       }
     }

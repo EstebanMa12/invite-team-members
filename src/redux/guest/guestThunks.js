@@ -38,3 +38,22 @@ export const updateGuest = (guest) => {
         }
     }
 }
+
+export const getGuest = () =>{
+    return async (dispatch) => {
+        try {
+            let tempArr = []
+            const response = await getDocs(projectCollection);
+            response.forEach((item)=>{
+                tempArr.push({id: item.id, ...item.data() })
+            });
+            // console.log(tempArr);
+            dispatch(setGuest(tempArr));
+        } catch (error) {
+            console.warn(error);
+            dispatch(
+                setError({ error: true, code: error.code, message: error.message })
+            )
+        }
+    }
+} 

@@ -1,7 +1,9 @@
 /* eslint-disable react/no-unknown-property */
 import DropdownList from "../DropdownList";
 import Profile from "../Profile";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getGuest } from "../../redux/guest/guestThunks";
+import { useDispatch, useSelector } from "react-redux";
 
 const PermissionSelection = ({ initialPermission, onChange }) => {
     const [permission, setPermission] = useState(initialPermission);
@@ -29,6 +31,17 @@ const PermissionSelection = ({ initialPermission, onChange }) => {
   };
 
 const UsersTable = ({onOpenModal}) => {
+    const dispatch = useDispatch();
+    const {guest} = useSelector((store)=>store.guests)
+    const {user} = useSelector((store)=>store.user)
+
+    console.log(guest);
+
+
+    useEffect(() => {
+        dispatch(getGuest());
+    }, []);
+
     function RoleBadge({ role }) {
         const roleClasses = getRoleClasses(role);
     
@@ -51,11 +64,6 @@ const UsersTable = ({onOpenModal}) => {
         }
       }
 
-      const handlePermissionChange = (e, index) => {
-        const updatedRows = [...rows];
-        updatedRows[index].permission = e.target.value;
-        setRows(updatedRows);
-      };
 
     return (
         <div className=" overflow-x-auto shadow-md sm:rounded-lg
@@ -99,7 +107,7 @@ const UsersTable = ({onOpenModal}) => {
                 <tbody>
                     <tr className="bg-white border-b  hover:bg-gray-50 ">
                         <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap w-1/4 ">
-                            <Profile />
+                            <Profile photoURL={user.photoURL} name={user.name} email={user.email}/>
                         </th>
                         <td className="px-6 py-4">
                             <RoleBadge role="admin"/>
@@ -111,6 +119,22 @@ const UsersTable = ({onOpenModal}) => {
                             <PermissionSelection onChange={(e) => handlePermissionChange(e, index)}/>                      
                         </td>
                     </tr>
+                    {guest.map((item, index) => (
+                        <tr key={index} className="bg-white border-b hover:bg-gray-50">
+                            <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap w-1/4 ">
+                                <Profile photoURL={item.photoURL} name={item.name} email={item.email}/>
+                            </th>
+                            <td className="px-6 py-4">
+                                <RoleBadge role={item.role}/>
+                            </td>
+                            <td className="px-6 py-4">
+                                <DropdownList/> 
+                            </td>
+                            <td className="px-6 py-4">
+                                <PermissionSelection initialPermission={item.permission} onChange={(e) => handlePermissionChange(e, index)}/>                      
+                            </td>
+                        </tr>
+                    ))}
                                         
                 </tbody>
             </table>
