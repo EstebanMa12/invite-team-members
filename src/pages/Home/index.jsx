@@ -20,15 +20,12 @@ const Home = () => {
         <>
         <div className="container flex flex-row overflow-y-hidden">
             <Sidebar/>
-            < div className="flex flex-col w-full h-screen
+            < div className="flex flex-col w-screen h-screen
             pb-14
-            p-4
+            py-8
+            px-16
             gap-10
-            ml-64
             overflow-y-auto
-            md:ml-48
-            sm:ml-20
-            scrollbar-hide
             ">
                 <Header/>
                 <SuccessMessage/>
